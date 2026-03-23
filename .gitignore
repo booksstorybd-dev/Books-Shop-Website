@@ -1,0 +1,8 @@
+node_modules/
+.npm/
+.gemini/
+brain/
+.system_generated/
+package-lock.json
+*.log
+tmp/

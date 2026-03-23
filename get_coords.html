@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        img {
+            max-width: 500px;
+            cursor: crosshair;
+            border: 1px solid red;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Click top-left, top-right, bottom-right, bottom-left of the BOOK COVER area</h2>
+    <h3>Front</h3>
+    <img id="front" src="images/Front side of book.png">
+    <div id="front-out" style="font-size:20px; font-weight:bold; color:blue; margin-bottom:40px;"></div>
+
+    <h3>Back</h3>
+    <img id="back" src="images/Back side of book.jpg">
+    <div id="back-out" style="font-size:20px; font-weight:bold; color:blue;"></div>
+
+    <script>
+        function attach(id) {
+            let coords = [];
+            document.getElementById(id).addEventListener('click', function (e) {
+                let rect = e.target.getBoundingClientRect();
+                let x = (e.clientX - rect.left) / rect.width * 100;
+                let y = (e.clientY - rect.top) / rect.height * 100;
+                coords.push(x.toFixed(1) + '% ' + y.toFixed(1) + '%');
+                document.getElementById(id + '-out').innerText = 'clip-path: polygon(' + coords.join(', ') + ');';
+            });
+        }
+        attach('front');
+        attach('back');
+    </script>
+</body>
+
+</html>
